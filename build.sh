@@ -7,13 +7,13 @@ VERSION_PATH="`cat $CURR_PATH/go.mod | grep ^module | awk '{print $2}'`/version"
 function _info(){
 	local msg=$1
 	local now=`date '+%Y-%m-%d %H:%M:%S'`
-	echo  "\033[1;46;30m[INFO]\033[0m $now $msg"
+	echo  "$now $msg"
 }
 
 function _version(){
 	local msg=$1
 	local now=`date '+%Y-%m-%d %H:%M:%S'`
-	echo  "\033[1;46;30m[INFO]\033[0m $now $msg"
+	echo  "$now $msg"
 }
 
 function get_tag () {
@@ -64,7 +64,7 @@ function main() {
 	case $platform in
 	"linux")
 		_info "开始构建Linux平台版本 ..."
-		GOOS=linux GOARCH=amd64 \./
+		GOOS=linux GOARCH=amd64 \
 		CGO_ENABLED=0 go build  -ldflags "$ldflags" $main_file
 		;;
 	*)
@@ -76,7 +76,7 @@ function main() {
 	    _info "构建失败"
 		exit 1
 	fi
-	_info "程序构建完成: $curr_path"
+	_info "程序构建完成: $CURR_PATH"
 }
 
-main ${1:-local} $CURR_PATH .
+main ${1:-local}  .
