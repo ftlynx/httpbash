@@ -1,0 +1,14 @@
+app:
+  listen: :8080
+  debug: true
+  auth: changeme # api 接口认证的key  http header名字 x-api-auth
+
+mysql:
+  datasource: "root:password@tcp(127.0.0.1:3306)/test?parseTime=true&loc=Local"
+
+# 为了安全只有在 command.whitelist 中的命令才能执行
+command:
+   whitelist:
+   - ping
+   - ls
+
