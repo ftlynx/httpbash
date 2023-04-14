@@ -1,4 +1,4 @@
-package main
+package app
 
 import (
 	"encoding/base64"
@@ -31,7 +31,7 @@ func (c *CommandConfigFile) StoreFile(filename string, dirname string) error {
 	if err := os.MkdirAll(dirname, 0755); err != nil {
 		return err
 	}
-	path := dirname + filename
+	path := dirname + "/" + filename
 	if err := os.WriteFile(path, contentByte, 0666); err != nil {
 		return err
 	}

@@ -1,10 +1,9 @@
 app:
   listen: :8080
-  debug: true
   auth: changeme # api 接口认证的key  http header名字 x-api-auth
+  data_dir: /tmp/httpbash
+  display_url: http://127.0.0.1:9191 #服务本身访问的url地址
 
-mysql:
-  datasource: "root:password@tcp(127.0.0.1:3306)/test?parseTime=true&loc=Local"
 
 # 为了安全只有在 command.whitelist 中的命令才能执行
 command:
