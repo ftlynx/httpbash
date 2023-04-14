@@ -30,7 +30,7 @@ curl -XPOST -H "x-api-auth:changeme" http://127.0.0.1:8080/v1/command -d '
     "success": true,
     "data": {
         "http_api_endpoint": "http://127.0.0.1:9191/v0/command/log?task_id=aaaa-bbbb-cccc-dddd-eeef&job_id=1681382803555",
-        "ws_api_endpoint": "http://127.0.0.1:9191/v0/command/log/ws?task_id=aaaa-bbbb-cccc-dddd-eeef&job_id=1681382803555",
+        "ws_api_endpoint": "ws://127.0.0.1:9191/v0/command/log/ws?task_id=aaaa-bbbb-cccc-dddd-eeef&job_id=1681382803555",
         "ws_html_endpoint": "http://127.0.0.1:9191/v0/console/?task_id=aaaa-bbbb-cccc-dddd-eeef&job_id=1681382803555"
     }
 }
@@ -52,7 +52,7 @@ curl -XPOST -H "x-api-auth:changeme" http://127.0.0.1:8080/v1/command -d '
     "success": true,
     "data": {
         "http_api_endpoint": "http://127.0.0.1:9191/v0/command/log?task_id=aaaa-bbbb-cccc-dddd-eeef&job_id=1681382803555",
-        "ws_api_endpoint": "http://127.0.0.1:9191/v0/command/log/ws?task_id=aaaa-bbbb-cccc-dddd-eeef&job_id=1681382803555",
+        "ws_api_endpoint": "ws://127.0.0.1:9191/v0/command/log/ws?task_id=aaaa-bbbb-cccc-dddd-eeef&job_id=1681382803555",
         "ws_html_endpoint": "http://127.0.0.1:9191/v0/console/?task_id=aaaa-bbbb-cccc-dddd-eeef&job_id=1681382803555"
     }
 }
@@ -62,7 +62,7 @@ curl -XPOST -H "x-api-auth:changeme" http://127.0.0.1:8080/v1/command -d '
 ```
 "data": {
         "http_api_endpoint": "http://127.0.0.1:9191/v0/command/log?task_id=aaaa-bbbb-cccc-dddd-eeef&job_id=1681382803555",
-        "ws_api_endpoint": "http://127.0.0.1:9191/v0/command/log/ws?task_id=aaaa-bbbb-cccc-dddd-eeef&job_id=1681382803555",
+        "ws_api_endpoint": "ws://127.0.0.1:9191/v0/command/log/ws?task_id=aaaa-bbbb-cccc-dddd-eeef&job_id=1681382803555",
         "ws_html_endpoint": "http://127.0.0.1:9191/v0/console/?task_id=aaaa-bbbb-cccc-dddd-eeef&job_id=1681382803555"
 }
 ```
