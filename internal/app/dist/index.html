@@ -12,8 +12,11 @@
         const searchParams = new URLSearchParams(url.search);
         const taskId = searchParams.get('task_id');
         const jobId = searchParams.get('job_id');
-
-        const wsUrl = 'ws://'+url.host+'/v0/command/log/ws?task_id='+taskId+'&job_id='+jobId
+        let protocol = "ws://";
+        if (url.startsWith("https://")) {
+            protocol = "wss://"
+        }
+        const wsUrl = protocol+url.host+'/v0/command/log/ws?task_id='+taskId+'&job_id='+jobId
         const socket = new WebSocket(wsUrl);
         socket.onopen = function (event) {
             document.getElementById("connect").innerHTML="Connection Open"
