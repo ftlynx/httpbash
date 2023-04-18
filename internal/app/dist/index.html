@@ -13,7 +13,7 @@
         const taskId = searchParams.get('task_id');
         const jobId = searchParams.get('job_id');
         let protocol = "ws://";
-        if (url.startsWith("https://")) {
+        if (url.protocol==="https:") {
             protocol = "wss://"
         }
         const wsUrl = protocol+url.host+'/v0/command/log/ws?task_id='+taskId+'&job_id='+jobId
