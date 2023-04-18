@@ -136,6 +136,7 @@ func MyRouter() error {
 		result["http_api_endpoint"] = fmt.Sprintf("%s/v0/command/log?task_id=%s&job_id=%s", global.Conf.App.DisplayUrl, body.TaskId, jobId)
 		result["ws_api_endpoint"] = fmt.Sprintf("%s/v0/command/log/ws?task_id=%s&job_id=%s", wsPrefix, body.TaskId, jobId)
 		result["ws_html_endpoint"] = fmt.Sprintf("%s/v0/console/?task_id=%s&job_id=%s", global.Conf.App.DisplayUrl, body.TaskId, jobId)
+		result["getJobStatus"] = fmt.Sprintf("%s/v0/command/status?task_id=%s&job_id=%s", global.Conf.App.DisplayUrl, body.TaskId, jobId)
 		c.JSON(http.StatusOK, NewOk(result))
 		return
 	})
@@ -173,6 +174,35 @@ func MyRouter() error {
 		}))
 		return
 	})
+	noAuth.GET("/command/status", func(c *gin.Context) {
+		taskId := c.Query("task_id")
+		if taskId == "" {
+			c.JSON(http.StatusBadRequest, NewFail("task_id require"))
+			return
+		}
+		jobId := c.Query("job_id")
+		if jobId == "" {
+			c.JSON(http.StatusBadRequest, NewFail("job_id require"))
+			return
+		}
+
+		task := NewTask(taskId, jobId)
+		jobStatus := ProcessStatusRunning
+		if task.TaskIsRunning() == false {
+			status, err := task.GetJobStatus()
+			if err != nil {
+				c.JSON(http.StatusInternalServerError, NewFail("job not exists"))
+				return
+			}
+			jobStatus = string(status)
+		}
+
+		c.JSON(http.StatusOK, NewOk(gin.H{
+			"status": jobStatus,
+		}))
+		return
+	})
+
 	noAuth.GET("/command/log/ws", func(c *gin.Context) {
 		taskId := c.Query("task_id")
 		if taskId == "" {
